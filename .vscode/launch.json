@@ -1,0 +1,24 @@
+{
+    // IntelliSense を使用して利用可能な属性を学べます。
+    // 既存の属性の説明をホバーして表示します。
+    // 詳細情報は次を確認してください: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+      {
+        "name": "C/C++ Runner: Debug Session",
+        "type": "cppdbg",
+        "request": "launch",
+        "args": ["<", "${workspaceFolder}/problem.in"],//workspaceFolderのproblem.inというファイルを一度作り、デバッグの都度に検証したい入力をそこに保存する
+        "stopAtEntry": false,
+        "cwd": "${fileDirname}",
+        "environment": [],
+        "program": "${workspaceFolder}/program",
+        "internalConsoleOptions": "openOnSessionStart",
+        "MIMode": "gdb",
+        "preLaunchTask": "build",
+        "miDebuggerPath": "/usr/bin/gdb",
+        "externalConsole": false
+      }
+    ]
+  }
+  
