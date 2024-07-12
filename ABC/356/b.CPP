@@ -3,44 +3,42 @@ using namespace std;
 
 // 2024/07/12
 // 思ったより時間がかかった
-// 二次元配列の入力とか、扱うときのインデックス（二重ループでどっちのインデックスを使用するんだっけ、ETC）にまだ慣れていない
-// C++では、例えばA[2][3]とすると、2行目の3列目、という意味
+// 配列をpushしたりコピーしたりする方法がわからなかったので調べた
+// containsというメソッドがsetに用意されているらしいが、使用できない。C++のバージョンが古い...？
+
+// return 0すれば途中でプログラム自体終了できる。何かと便利そう。
 
 int main()
 {
     int N,M;
     cin >> N >> M;
 
-    vector<int> A(M);
+    vector<int> A(N), B(M);
 
-    for(auto i = 0; i < M; i++){
+    for(auto i = 0; i < N; i++){
         cin >> A.at(i);
     }
 
-    vector<vector<int>> X(N, vector<int>(M));
-
-    for(auto i = 0; i < N; i++){
-        for (auto j = 0; j < M; j++){
-            cin >> X.at(i).at(j);
-        }
-    }
-
-    auto answer = "Yes";
-
     for(auto i = 0; i < M; i++){
-        auto mokuhyo = A.at(i);
-        auto gokei = 0;
-        for (auto j = 0; j < N; j++){
-            gokei += X.at(j).at(i);
-        }
-
-        if(gokei < mokuhyo){
-            answer = "No";
-            break;
-        }
+        cin >> B.at(i);
     }
 
+    // BにAを合成してソート
+    B.insert(B.end(), A.begin(), A.end());
+    sort(B.begin(), B.end());
+    // Aもソート
+    sort(A.begin(), A.end());
     
+    auto answer = "No";
+
+    for(auto i = 1; i < N; i++){
+        for(auto j = 1; j < N + M; j++){
+            if(B.at(j-1) == A.at(i-1) && B.at(j) == A.at(i)){
+                answer = "Yes";
+                break;
+            }
+        }
+    }
 
     cout << answer << endl;
 }
